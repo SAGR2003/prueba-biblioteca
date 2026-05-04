@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "ana-gomez",
+    "titulo": "La Tortuga y el Conflicto",
+    "autor": "Ana Gómez",
+    "descripcion": "En un tranquilo lago vivían dos tortugas muy talentosas: Alma y Bruno. Ambas habían decidido escribir juntas el gran libro de recetas del lago, la obra más i...",
+    "archivo": "fabulas/ana-gomez.md"
+  }
+]
