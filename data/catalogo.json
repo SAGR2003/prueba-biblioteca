@@ -5,5 +5,12 @@
     "autor": "Ana Gómez",
     "descripcion": "En un tranquilo lago vivían dos tortugas muy talentosas: Alma y Bruno. Ambas habían decidido escribir juntas el gran libro de recetas del lago, la obra más i...",
     "archivo": "fabulas/ana-gomez.md"
+  },
+  {
+    "id": "pruebita",
+    "titulo": "Sin título",
+    "autor": "Pruebita",
+    "descripcion": "\\# El León y la Rama",
+    "archivo": "fabulas/pruebita.md"
   }
 ]
