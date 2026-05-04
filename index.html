@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca de Fábulas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO / HERO ===== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">📚</div>
+      <h1 class="hero-title">Biblioteca de Fábulas</h1>
+      <p class="hero-subtitle">Un proyecto colaborativo construido con Git &amp; GitHub</p>
+      <p class="hero-description">
+        Cada fábula aquí es un <em>commit</em>, cada autor un <em>colaborador</em>.
+        Bienvenido a nuestra historia compartida.
+      </p>
+    </div>
+    <!-- Onda decorativa que separa el hero del contenido -->
+    <!-- El path empieza y termina en y=0 para que no queden esquinas azules expuestas -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 C300,72 900,0 1200,0 L1200,72 L0,72 Z" fill="#fefeff"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== ESTADÍSTICAS ===== -->
+  <section class="stats-section" aria-label="Estadísticas de la biblioteca">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" id="total-fabulas">—</span>
+          <span class="stat-label">Fábulas</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="total-autores">—</span>
+          <span class="stat-label">Autores</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">🌿</span>
+          <span class="stat-label">Proyecto Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUSCADOR ===== -->
+  <section class="search-section" aria-label="Buscar fábulas">
+    <div class="container">
+      <div class="search-wrapper">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          id="buscador"
+          class="search-input"
+          placeholder="Buscar por título o autor..."
+          aria-label="Buscar fábula por título o autor"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENIDO PRINCIPAL: GRID DE TARJETAS ===== -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Las tarjetas se insertan aquí dinámicamente desde app.js -->
+      <div id="fabulas-grid" class="fabulas-grid" role="list"></div>
+
+      <!-- Estado vacío: aparece cuando el buscador no encuentra resultados -->
+      <div id="empty-state" class="empty-state hidden" aria-live="polite">
+        <div class="empty-icon">🌿</div>
+        <h3>No encontramos ninguna fábula</h3>
+        <p>Intenta con otro término de búsqueda.</p>
+      </div>
+
+      <!-- Estado de carga: visible mientras se obtiene el catálogo -->
+      <div id="loading-state" class="loading-state">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Cargando la biblioteca...</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">📚 Biblioteca de Fábulas &mdash; Un proyecto colaborativo para aprender Git &amp; GitHub</p>
+      <p class="footer-sub">Cada fábula es un pull request. Cada autor, un colaborador.</p>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL DE LECTURA ===== -->
+  <!-- Se activa al hacer clic sobre una tarjeta -->
+  <div
+    id="modal-overlay"
+    class="modal-overlay hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-titulo-accesible"
+  >
+    <div class="modal">
+      <div class="modal-header">
+        <span id="modal-autor" class="modal-autor-badge"></span>
+        <button id="modal-close" class="modal-close" aria-label="Cerrar fábula">✕</button>
+      </div>
+      <!-- El contenido del archivo .md renderizado se inserta aquí -->
+      <div id="modal-contenido" class="modal-contenido"></div>
+      <div class="modal-footer">
+        <button id="modal-close-bottom" class="btn-secondary">← Volver a la biblioteca</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
