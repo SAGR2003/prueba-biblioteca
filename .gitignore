@@ -1,4 +1,4 @@
-.github/*
-data/*
+# .github/*
+# data/*
 .claude/*
 fabulas/*

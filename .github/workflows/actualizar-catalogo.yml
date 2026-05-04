@@ -1,0 +1,54 @@
+# ============================================================
+# actualizar-catalogo.yml
+#
+# Se ejecuta automáticamente cada vez que alguien hace push
+# a la rama main con cambios dentro de fabulas/.
+#
+# Qué hace:
+#   1. Corre el script Python que lee los .md de fabulas/
+#   2. Regenera data/catalogo.json
+#   3. Hace commit y push del JSON actualizado
+#
+# Resultado: los estudiantes solo necesitan hacer push de su
+# fábula. El catálogo y el sitio se actualizan solos.
+# ============================================================
+
+name: Actualizar catálogo de fábulas
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "fabulas/**"   # Solo se activa si cambia algo en fabulas/
+
+permissions:
+  contents: write      # Necesario para que el Action pueda hacer commit
+
+jobs:
+  regenerar-catalogo:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga el código del repositorio
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      # 2. Prepara Python
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Ejecuta el script que genera el catálogo
+      - name: Regenerar data/catalogo.json
+        run: python scripts/generar_catalogo.py
+
+      # 4. Si el JSON cambió, hace commit y push automáticamente
+      - name: Commit y push del catálogo actualizado
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/catalogo.json
+          git diff --cached --quiet || git commit -m "chore: actualiza catálogo automáticamente"
+          git push
