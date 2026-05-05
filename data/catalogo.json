@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "ana-gomez",
+    "titulo": "La Tortuga y el Conflicto",
+    "autor": "Ana Gómez",
+    "descripcion": "En un tranquilo lago vivían dos tortugas muy talentosas: Alma y Bruno. Ambas habían decidido escribir juntas el gran libro de recetas del lago, la obra más i...",
+    "archivo": "fabulas/ana-gomez.md"
+  },
+  {
+    "id": "ejemplo-profesor",
+    "titulo": "El León y la Rama",
+    "autor": "Profesor Ejemplo",
+    "descripcion": "Había una vez un poderoso león que gobernaba sobre todos los animales del gran bosque. Era conocido por su fuerza y valentía, pero tenía un defecto profundo:...",
+    "archivo": "fabulas/ejemplo-profesor.md"
+  },
+  {
+    "id": "pruebita",
+    "titulo": "Sin título",
+    "autor": "Pruebita",
+    "descripcion": "\\# El León y la Rama",
+    "archivo": "fabulas/pruebita.md"
+  },
+  {
+    "id": "pruebita2",
+    "titulo": "Sin título",
+    "autor": "Pruebita2",
+    "descripcion": "\\# El Repositorio del Bosque",
+    "archivo": "fabulas/pruebita2.md"
+  },
+  {
+    "id": "sergio-roa",
+    "titulo": "El Repositorio del Bosque",
+    "autor": "Sergio Roa",
+    "descripcion": "En lo más profundo del bosque digital vivían muchos animales que guardaban sus recuerdos en hojas sueltas. Cada vez que aprendían algo nuevo, escribían una n...",
+    "archivo": "fabulas/sergio-roa.md"
+  }
+]
