@@ -1,145 +1,433 @@
-# 📚 Biblioteca de Fábulas
+# Cheat Sheet — Taller Git y GitHub: Biblioteca de Fábulas
 
-Un sitio web estático diseñado para una clase introductoria de **Git y GitHub**.  
-Cada estudiante agrega una fábula al repositorio. El sitio la muestra automáticamente.
+Bienvenido/a al taller práctico de Git y GitHub.
 
----
+En este ejercicio vamos a usar una metáfora sencilla:
 
-## Estructura del proyecto
+> Git nos ayuda a contar la historia de un trabajo, guardando momentos importantes como si fueran fotografías.  
+> GitHub nos ayuda a compartir esa historia con otras personas en una biblioteca común.
 
-```
-libreria-de-fabulas/
-├── index.html              ← Página principal del sitio
-├── styles.css              ← Todos los estilos visuales
-├── app.js                  ← Lógica del frontend (tarjetas, modal, buscador)
-├── data/
-│   └── catalogo.json       ← Índice de fábulas (se regenera automáticamente)
-├── fabulas/
-│   ├── ejemplo-profesor.md ← Ejemplo del docente
-│   └── ana-gomez.md
-├── scripts/
-│   └── generar_catalogo.py ← Script Python (para correr localmente)
-└── .github/
-    └── workflows/
-        └── actualizar-catalogo.yml  ← GitHub Action: regenera el catálogo en cada push
-```
+Durante el taller vamos a crear una fábula, guardar sus versiones con Git y luego publicarla en un repositorio compartido en GitHub.
 
 ---
 
-## Cómo correr el proyecto localmente
+# Parte 1 — Git local: contar la historia de mi fábula
 
-Este proyecto no usa Node ni npm. Solo necesitas Python instalado.
+En esta primera parte vamos a trabajar en nuestro computador.
 
-### 1. Clona el repositorio
+La idea es crear una fábula corta y guardar tres momentos importantes:
+
+1. Inicio
+2. Nudo
+3. Desenlace y moraleja
+
+---
+
+## 1. Crear la carpeta de trabajo
+
+Primero creamos una carpeta para nuestra fábula.
 
 ```bash
-git clone https://github.com/tu-usuario/libreria-de-fabulas.git
-cd libreria-de-fabulas
-```
+mkdir fabula-git
+cd fabula-git
 
-### 2. Inicia el servidor local
+Esta carpeta será nuestro espacio de trabajo.
 
-```bash
-python -m http.server 8000
-```
+2. Decirle a Git que vigile esta carpeta
 
-Abre el navegador en: **http://localhost:8000**
+Para empezar a contar nuestra historia, debemos decirle a Git que esta carpeta será un repositorio.
 
-> Por qué un servidor local? El navegador bloquea `fetch()` sobre archivos locales
-> (`file://`). El servidor de Python resuelve esto sin instalar nada extra.
+Es decir: desde ahora, Git debe fijarse en los cambios que ocurran aquí.
 
----
+git init
 
-## Cómo agregar tu fábula (flujo para estudiantes)
+Después podemos revisar el estado de la carpeta con:
 
-**Paso 1.** Crea un archivo `.md` dentro de `fabulas/` con tu nombre:
+git status
 
-```
-fabulas/tu-nombre.md
-```
+Este comando nos dice qué archivos han cambiado, cuáles son nuevos y cuáles están listos para guardar.
 
-**Paso 2.** Escribe tu fábula con este formato:
+3. Crear el archivo de la fábula
 
-```markdown
-# Título de tu fábula
+Creamos un archivo llamado:
 
-**Autor:** Tu Nombre
-**Fecha:** Mayo 2026
+fabula.md
 
----
+Dentro escribimos el inicio de nuestra fábula.
 
-Aquí va el texto de tu fábula...
+Ejemplo:
 
-## Una sección si quieres
+# La liebre y el búho
 
-Más texto...
+## Inicio
 
-**Moraleja:** La lección de tu historia.
-```
+Había una vez una liebre que presumía de ser la más rápida del bosque.
+4. Revisar qué detectó Git
 
-**Paso 3.** Haz commit y push (¡solo esto!):
+Después de crear el archivo, revisamos el estado:
 
-```bash
-git add fabulas/tu-nombre.md
-git commit -m "Agrega fábula de Tu Nombre"
+git status
+
+Git debería mostrar que hay un archivo nuevo llamado fabula.md.
+
+En este punto Git ya vio el archivo, pero todavía no lo ha guardado como una versión oficial.
+
+5. Preparar el archivo para guardar
+
+Antes de tomar una “foto” de la historia, debemos decirle a Git qué queremos incluir en esa foto.
+
+git add fabula.md
+
+Este comando prepara el archivo para el próximo guardado.
+
+6. Hacer el primer commit: el inicio de la historia
+
+Ahora sí guardamos la primera versión importante de nuestra fábula.
+
+git commit -m "docs: agregar inicio de la fabula"
+
+Un commit es como una fotografía del proyecto en un momento específico.
+
+En este caso, guardamos el inicio de la fábula.
+
+7. Agregar el nudo de la fábula
+
+Abrimos nuevamente fabula.md y agregamos el nudo.
+
+Ejemplo:
+
+## Nudo
+
+Un día, el búho le propuso una carrera, pero con una condición: la liebre debía detenerse a escuchar a otros animales durante el camino.
+
+Luego revisamos qué cambió:
+
+git status
+
+Preparamos el archivo:
+
+git add fabula.md
+
+Y guardamos el segundo momento de la historia:
+
+git commit -m "docs: agregar nudo de la fabula"
+8. Agregar el desenlace y la moraleja
+
+Ahora completamos la fábula.
+
+Ejemplo:
+
+## Desenlace
+
+La liebre descubrió que correr rápido no servía de mucho si no entendía el camino.
+
+## Moraleja
+
+Antes de avanzar rápido, conviene entender bien hacia dónde se va.
+
+Luego hacemos el mismo proceso:
+
+git status
+git add fabula.md
+git commit -m "docs: agregar desenlace y moraleja"
+9. Ver la historia de la fábula
+
+Para ver las versiones que hemos guardado, usamos:
+
+git log --oneline
+
+Este comando muestra una lista corta de commits.
+
+Ejemplo:
+
+a1b2c3d docs: agregar desenlace y moraleja
+e4f5g6h docs: agregar nudo de la fabula
+i7j8k9l docs: agregar inicio de la fabula
+
+Cada línea representa una fotografía de nuestra historia.
+
+10. Viajar a una versión anterior
+
+Git nos permite visitar versiones pasadas de nuestro trabajo.
+
+Primero copiamos el código de un commit anterior. Por ejemplo:
+
+i7j8k9l
+
+Luego usamos:
+
+git checkout CODIGO_DEL_COMMIT
+
+Ejemplo:
+
+git checkout i7j8k9l
+
+Ahora abrimos fabula.md.
+
+Deberíamos ver cómo estaba la fábula en ese momento de la historia.
+
+Importante:
+
+Esto no borra nada. Solo estamos visitando una versión anterior.
+
+11. Volver al presente
+
+Para regresar a la versión actual de la fábula, usamos:
+
+git switch main
+
+Si el computador usa master en vez de main, usamos:
+
+git switch master
+
+Después de esto, volvemos a la versión más reciente de nuestra fábula.
+
+12. ¿Qué pasa si me equivoco?
+
+Ahora vamos a simular un error.
+
+Abrimos fabula.md y escribimos algo incorrecto, por ejemplo:
+
+ASDKJASDKJASD TEXTO MAL ESCRITO
+
+Luego revisamos el estado:
+
+git status
+
+Si todavía no hemos hecho commit y queremos descartar ese error, usamos:
+
+git restore fabula.md
+
+Este comando devuelve el archivo a la última versión guardada.
+
+Es decir:
+
+Git nos ayuda a volver a la última foto buena.
+
+Resumen de comandos de Git local
+Acción	Comando
+Crear una carpeta	mkdir fabula-git
+Entrar a la carpeta	cd fabula-git
+Iniciar Git	git init
+Ver el estado	git status
+Preparar archivo	git add fabula.md
+Guardar versión	git commit -m "mensaje"
+Ver historial	git log --oneline
+Viajar al pasado	git checkout CODIGO_DEL_COMMIT
+Volver al presente	git switch main
+Descartar un error no guardado	git restore fabula.md
+Parte 2 — GitHub: publicar mi fábula en la biblioteca común
+
+En esta segunda parte vamos a trabajar con GitHub.
+
+La idea es que cada persona agregue su fábula a una biblioteca compartida.
+
+GitHub será como una biblioteca en internet donde quedarán publicadas todas las fábulas del grupo.
+
+1. Clonar el repositorio central
+
+El profesor compartirá una URL del repositorio.
+
+Ejemplo:
+
+https://github.com/usuario/biblioteca-fabulas.git
+
+Para traer esa biblioteca a nuestro computador, usamos:
+
+git clone URL_DEL_REPOSITORIO
+
+Ejemplo:
+
+git clone https://github.com/usuario/biblioteca-fabulas.git
+
+Luego entramos a la carpeta:
+
+cd biblioteca-fabulas
+
+Clonar significa:
+
+Traer una copia de la biblioteca de GitHub a mi computador.
+
+2. Ubicar la carpeta de fábulas
+
+Dentro del repositorio encontraremos una carpeta llamada:
+
+fabulas/
+
+Ahí es donde cada persona debe agregar su archivo.
+
+La regla es:
+
+Cada persona crea un solo archivo con su nombre y apellido.
+
+Ejemplos:
+
+fabulas/ana-gomez.md
+fabulas/carlos-perez.md
+fabulas/laura-martinez.md
+fabulas/sergio-roa.md
+3. Crear mi archivo de fábula
+
+Creamos un archivo dentro de fabulas/.
+
+Ejemplo:
+
+fabulas/sergio-roa.md
+
+El contenido puede ser algo así:
+
+# La liebre y el búho
+
+## Inicio
+
+Había una vez una liebre que presumía de ser la más rápida del bosque.
+
+## Nudo
+
+Un día, el búho le propuso una carrera, pero con una condición: la liebre debía detenerse a escuchar a otros animales durante el camino.
+
+## Desenlace
+
+La liebre descubrió que correr rápido no servía de mucho si no entendía el camino.
+
+## Moraleja
+
+Antes de avanzar rápido, conviene entender bien hacia dónde se va.
+4. Revisar qué cambió
+
+Después de crear nuestro archivo, revisamos el estado:
+
+git status
+
+Git debería mostrar que hay un archivo nuevo dentro de fabulas/.
+
+5. Preparar mi archivo
+
+Ahora preparamos nuestro archivo para guardarlo:
+
+git add fabulas/nombre-apellido.md
+
+Ejemplo:
+
+git add fabulas/sergio-roa.md
+6. Hacer commit de mi fábula
+
+Guardamos el cambio con un mensaje claro:
+
+git commit -m "docs: agregar fabula de Nombre Apellido"
+
+Ejemplo:
+
+git commit -m "docs: agregar fabula de Sergio Roa"
+
+Este commit representa mi aporte a la biblioteca común.
+
+7. Traer cambios nuevos antes de subir
+
+Como varias personas están trabajando sobre la misma biblioteca, es posible que alguien haya subido su fábula antes que nosotros.
+
+Antes de publicar nuestro cambio, traemos lo más reciente de GitHub:
+
+git pull --rebase
+
+Este comando significa:
+
+Traiga los cambios nuevos de GitHub y luego ponga mi commit encima, para que la historia quede ordenada.
+
+8. Subir mi fábula a GitHub
+
+Ahora publicamos nuestro aporte:
+
 git push
-```
 
-> El catálogo se actualiza solo gracias al GitHub Action.
-> No necesitas correr ningún script Python.
+Después de esto, nuestra fábula debería aparecer en GitHub.
 
----
+9. ¿Qué pasa si GitHub no me deja subir?
 
-## Cómo regenerar el catálogo manualmente (solo si trabajas en local)
+A veces puede aparecer un mensaje como:
 
-Si quieres ver los cambios antes de hacer push, puedes correr el script Python:
+Updates were rejected
 
-```bash
-python scripts/generar_catalogo.py
-```
+o:
 
-Esto actualiza `data/catalogo.json` localmente para que el servidor de prueba refleje los cambios.
+fetch first
 
----
+Esto no significa que dañamos algo.
 
-## Despliegue en GitHub Pages
+Significa:
 
-1. Sube el proyecto a un repositorio en GitHub.
-2. Ve a **Settings → Pages**.
-3. En **Source**, elige la rama `main` y carpeta `/` (raíz).
-4. Haz clic en **Save**.
-5. En unos minutos tu sitio estará en:  
-   `https://tu-usuario.github.io/libreria-de-fabulas/`
+Alguien publicó cambios antes que nosotros. Primero debemos traer esos cambios y luego volver a subir.
 
----
+La solución es:
 
-## Formato Markdown soportado
+git pull --rebase
+git push
+10. Ver la biblioteca actualizada
 
-El sitio renderiza un subconjunto de Markdown sin librerías externas:
+Después del push, podemos abrir el repositorio en GitHub y revisar:
 
-| Sintaxis       | Resultado   |
-|----------------|-------------|
-| `# Título`     | Encabezado grande |
-| `## Sección`   | Encabezado mediano |
-| `### Subsección` | Encabezado pequeño |
-| `- ítem`       | Lista con viñetas |
-| `**negrita**`  | **negrita** |
-| `*cursiva*`    | *cursiva* |
-| `---`          | Línea separadora |
+fabulas/
 
----
+Ahí debería aparecer nuestro archivo.
 
-## Tecnologías usadas
+Además, el sitio de la biblioteca se actualizará automáticamente para mostrar nuestra fábula como una tarjeta o módulo visual.
 
-| Tecnología | Uso |
-|------------|-----|
-| HTML       | Estructura del sitio |
-| CSS        | Estilos y animaciones |
-| JavaScript | Interactividad y carga dinámica |
-| Python     | Script para generar el catálogo |
-| JSON       | Formato del catálogo |
-| Markdown   | Formato de las fábulas |
+Reglas importantes del ejercicio
 
----
+Para que todo salga bien durante la clase:
 
-Hecho con 📚 para una clase de Git y GitHub.
+Regla 1
+
+Cada persona debe crear solo su propio archivo dentro de fabulas/.
+
+Ejemplo:
+
+fabulas/nombre-apellido.md
+Regla 2
+
+No modificar archivos de otras personas.
+
+Regla 3
+
+No modificar manualmente:
+
+data/catalogo.json
+
+Ese archivo se actualiza automáticamente.
+
+Regla 4
+
+Antes de hacer push, usar:
+
+git pull --rebase
+Regla 5
+
+Si el push falla, repetir:
+
+git pull --rebase
+git push
+Resumen de comandos de GitHub
+Acción	Comando
+Clonar biblioteca	git clone URL_DEL_REPOSITORIO
+Entrar a la carpeta	cd biblioteca-fabulas
+Ver cambios	git status
+Preparar mi fábula	git add fabulas/nombre-apellido.md
+Guardar mi aporte	git commit -m "docs: agregar fabula de Nombre Apellido"
+Traer cambios recientes	git pull --rebase
+Subir mi aporte	git push
+Flujo completo para publicar mi fábula
+git clone URL_DEL_REPOSITORIO
+cd biblioteca-fabulas
+
+# Crear mi archivo dentro de fabulas/
+# Ejemplo: fabulas/sergio-roa.md
+
+git status
+git add fabulas/sergio-roa.md
+git commit -m "docs: agregar fabula de Sergio Roa"
+git pull --rebase
+git push
+Frase para recordar
+
+Git guarda la historia de mi trabajo.
+GitHub comparte esa historia con mi equipo.

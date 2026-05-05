@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biblioteca de Fábulas</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <!-- ===== ENCABEZADO / HERO ===== -->
@@ -23,7 +25,7 @@
     <!-- El path empieza y termina en y=0 para que no queden esquinas azules expuestas -->
     <div class="hero-wave">
       <svg viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,0 C300,72 900,0 1200,0 L1200,72 L0,72 Z" fill="#fefeff"/>
+        <path d="M0,0 C300,72 900,0 1200,0 L1200,72 L0,72 Z" fill="#fefeff" />
       </svg>
     </div>
   </header>
@@ -53,13 +55,8 @@
     <div class="container">
       <div class="search-wrapper">
         <span class="search-icon" aria-hidden="true">🔍</span>
-        <input
-          type="text"
-          id="buscador"
-          class="search-input"
-          placeholder="Buscar por título o autor..."
-          aria-label="Buscar fábula por título o autor"
-        />
+        <input type="text" id="buscador" class="search-input" placeholder="Buscar por título o autor..."
+          aria-label="Buscar fábula por título o autor" />
       </div>
     </div>
   </section>
@@ -90,20 +87,16 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
-      <p class="footer-text">📚 Biblioteca de Fábulas &mdash; Un proyecto colaborativo para aprender Git &amp; GitHub</p>
-      <p class="footer-sub">Cada fábula es un pull request. Cada autor, un colaborador.</p>
+      <p class="footer-text">📚 Biblioteca de Fábulas &mdash; Un proyecto colaborativo para aprender Git &amp; GitHub
+      </p>
+      <p class="footer-sub">Cada fábula es un commit. Cada autor, un colaborador.</p>
     </div>
   </footer>
 
   <!-- ===== MODAL DE LECTURA ===== -->
   <!-- Se activa al hacer clic sobre una tarjeta -->
-  <div
-    id="modal-overlay"
-    class="modal-overlay hidden"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-titulo-accesible"
-  >
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true"
+    aria-labelledby="modal-titulo-accesible">
     <div class="modal">
       <div class="modal-header">
         <span id="modal-autor" class="modal-autor-badge"></span>
@@ -119,4 +112,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
