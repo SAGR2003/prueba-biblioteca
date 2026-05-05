@@ -14,20 +14,6 @@
     "archivo": "fabulas/ejemplo-profesor.md"
   },
   {
-    "id": "pruebita",
-    "titulo": "Sin título",
-    "autor": "Pruebita",
-    "descripcion": "\\# El León y la Rama",
-    "archivo": "fabulas/pruebita.md"
-  },
-  {
-    "id": "pruebita2",
-    "titulo": "Sin título",
-    "autor": "Pruebita2",
-    "descripcion": "\\# El Repositorio del Bosque",
-    "archivo": "fabulas/pruebita2.md"
-  },
-  {
     "id": "sergio-roa",
     "titulo": "El Repositorio del Bosque",
     "autor": "Sergio Roa",
