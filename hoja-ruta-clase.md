@@ -43,18 +43,23 @@ Explicación:
 
 Ejercicio 3: Segundo commit — Nudo
 
-Editan el archivo:
+**Editan el archivo:**
 
+```markdown
 ## Nudo
 
 Un día, el búho le propuso una carrera, pero con una condición: la liebre debía detenerse a escuchar a otros animales durante el camino.
+```
 
 Luego:
 
+```bash
 git status
 git add fabula.md
 git commit -m "docs: agregar nudo de la fabula"
-Ejercicio 4: Tercer commit — Desenlace y moraleja
+```
+
+### Ejercicio 4: Tercer commit — Desenlace y moraleja
 
 Editan:
 
